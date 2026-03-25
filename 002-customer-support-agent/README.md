@@ -239,17 +239,17 @@ rad bicep publish-extension -f radius/types/blobStorages.yaml --target radius/ex
 
 > [!IMPORTANT]
 >
-> **No action is needed in this step.** The recipes have already been published to `ghcr.io/reshrahim/recipes/`.
+> **No action is needed in this step.** The recipes have already been published to `ghcr.io/radius-project/lab/recipes/`.
 
 A Recipe defines *how* to provision a Resource Type. Recipes are Infrastructure as Code templates, Bicep in this sample, that Radius executes when you deploy a resource of a given type. They receive context from Radius (the resource name, properties, connections) and output infrastructure.
 
 This sample has three recipes:
 
-| Recipe | Resource Type |
-|--------|---------------|
-| `recipes/agent.bicep` | `Radius.AI/agents` |
-| `recipes/postgres.bicep` | `Radius.Data/postgreSqlDatabases` |
-| `recipes/blobstorage.bicep` | `Radius.Storage/blobStorages` |
+| Recipe                      | Resource Type                     |
+|-----------------------------|-----------------------------------|
+| `recipes/agent.bicep`       | `Radius.AI/agents`                |
+| `recipes/postgres.bicep`    | `Radius.Data/postgreSqlDatabases` |
+| `recipes/blobstorage.bicep` | `Radius.Storage/blobStorages`     |
 
 **Developer never sees these recipes**. They just declare `resource agent 'Radius.AI/agents' = { ... }` in their `app.bicep`, and Radius automatically finds and executes the matching recipe configured by the platform engineer in the environment.
 
@@ -341,9 +341,9 @@ rad recipe list
 
 ```
 RECIPE    TYPE                              TEMPLATE KIND  TEMPLATE
-default   Radius.AI/agents                  bicep          ghcr.io/reshrahim/recipes/agent:1.0
-default   Radius.Data/postgreSqlDatabases   bicep          ghcr.io/reshrahim/recipes/postgres:1.0
-default   Radius.Storage/blobStorages       bicep          ghcr.io/reshrahim/recipes/blobstorage:1.0
+default   Radius.AI/agents                  bicep          ghcr.io/radius-project/lab/recipes/agent:1.0
+default   Radius.Data/postgreSqlDatabases   bicep          ghcr.io/radius-project/lab/recipes/postgres:1.0
+default   Radius.Storage/blobStorages       bicep          ghcr.io/radius-project/lab/recipes/blobstorage:1.0
 ```
 
 ### Step 8: Create shared resources

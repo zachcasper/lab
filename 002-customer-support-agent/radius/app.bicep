@@ -7,7 +7,7 @@ extension radiusStorage
 param environment string
 
 @description('Container registry for the application images')
-param registry string = 'ghcr.io/reshrahim'
+param registry string = 'ghcr.io/radius-project/lab'
 
 @description('Image tag')
 param tag string = '3.0'

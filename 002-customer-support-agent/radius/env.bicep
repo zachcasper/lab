@@ -32,7 +32,7 @@ resource env 'Applications.Core/environments@2023-10-01-preview' = {
       'Radius.AI/agents': {
         default: {
           templateKind: 'bicep'
-          templatePath: 'ghcr.io/reshrahim/recipes/agent:1.0'
+          templatePath: 'ghcr.io/radius-project/lab/recipes/agent:1.0'
           parameters: {
             location: location
           }
@@ -41,7 +41,7 @@ resource env 'Applications.Core/environments@2023-10-01-preview' = {
       'Radius.Data/postgreSqlDatabases': {
         default: {
           templateKind: 'bicep'
-          templatePath: 'ghcr.io/reshrahim/recipes/postgres:1.0'
+          templatePath: 'ghcr.io/radius-project/lab/recipes/postgres:1.0'
           parameters: {
             location: location
           }
@@ -50,7 +50,7 @@ resource env 'Applications.Core/environments@2023-10-01-preview' = {
       'Radius.Storage/blobStorages': {
         default: {
           templateKind: 'bicep'
-          templatePath: 'ghcr.io/reshrahim/recipes/blobstorage:1.0'
+          templatePath: 'ghcr.io/radius-project/lab/recipes/blobstorage:1.0'
           parameters: {
             location: location
           }
