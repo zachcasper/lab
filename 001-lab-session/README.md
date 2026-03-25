@@ -21,10 +21,10 @@ The easiest way to run this lab is via GitHub Codespaces. Simply open a Codespac
 
 If you prefer to run the lab locally, you will need to install the following tools:
 
-2. [kubectl](https://kubernetes.io/docs/tasks/tools/)
-3. [Helm](https://helm.sh/docs/intro/install/)
-4. [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
-5. [rad CLI](https://docs.radapp.io/guides/tooling/rad-cli/howto-rad-cli/)
+1. [kubectl](https://kubernetes.io/docs/tasks/tools/)
+2. [Helm](https://helm.sh/docs/intro/install/)
+3. [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
+4. [rad CLI](https://docs.radapp.io/guides/tooling/rad-cli/howto-rad-cli/)
 
 ## Lab instructions
 

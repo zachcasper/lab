@@ -11,11 +11,13 @@ In order for your Radius environment to be able to deploy resources into Azure, 
     ```bash
     az ad sp create-for-rbac -n radius-lab --role Owner --scopes /subscriptions/<your-subscription-id>/resourceGroups/<your-resource-group>
     ```
+
 1. Add the new service principal credentials to your Radius installation. This will tell Radius _how_ to deploy Azure resources:
 
     ```bash
     rad credential register azure --client-id <app id> --client-secret <password> --tenant-id <tenant>
     ```
+
 1. Update your Radius environment with your resource group. This will tell Radius _where_ to deploy Azure resources:
 
     ```bash

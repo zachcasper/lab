@@ -6,7 +6,7 @@ Welcome to the Radius lab! This page will walk you through some of the basic con
 
 Radius is a new open-source, cloud-native application platform that enables developers and the platform engineers that support them to collaborate on delivering and managing cloud-native applications that follow organizational best practices for cost, operations and security, by default. Radius is an open-source project that supports deploying applications across private cloud, Microsoft Azure, and Amazon Web Services, with more cloud providers to come.
 
-You can find us on GitHub at https://github.com/radius-project, and on our website at https://radapp.io. You can also follow us on X at [@radapp_io](https://x.com/radapp_io) and on Threads at [@radapp_io](https://www.threads.net/@radapp_io).
+You can find us on GitHub at <https://github.com/radius-project>, and on our website at <https://radapp.io>. You can also follow us on X at [@radapp_io](https://x.com/radapp_io) and on Threads at [@radapp_io](https://www.threads.net/@radapp_io).
 
 ## Step 1.2: What is the pain-point Radius solves?
 

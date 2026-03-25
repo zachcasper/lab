@@ -313,7 +313,7 @@ demo Server is running at http://localhost:3000
 
 ## Step 4.8: Interact with the application
 
-Open a browser and navigate to http://localhost:3000 to see the application running. You should see a demo app which tells you a little bit about the application and the environment it's running in. You'll see the set of environment variables that were injected into the container, including the connection information for the Dapr state store.
+Open a browser and navigate to <http://localhost:3000> to see the application running. You should see a demo app which tells you a little bit about the application and the environment it's running in. You'll see the set of environment variables that were injected into the container, including the connection information for the Dapr state store.
 
 ![ToDo Homepage](./images/04-todo-home.png)
 

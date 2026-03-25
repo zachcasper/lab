@@ -78,9 +78,9 @@ spec:
    ```bash
    kubectl get pods
    ```
-   
+
    You should see the following:
-   
+
    ```
    NAME                    READY   STATUS    RESTARTS   AGE
    demo-5f4d88b6f9-964pb   1/1     Running   0          6s
@@ -95,10 +95,10 @@ spec:
    _Note: the `-g` flag is used to specify the resource group. The Kubernetes controller, which is acting as a client for Radius in this step, automatically creates a resource group for you based on the namespace and name of the application._
 
    You should see the following, showing your Radius application:
-   
+
    ```
    Displaying application: lab-yaml
-   
+
    Name: demo (Applications.Core/containers)
    Connections: (none)
    Resources:
@@ -147,12 +147,12 @@ Now, let's add a Recipe to the application. This will allow us to add a Redis Ca
 
    ```
    Displaying application: lab-yaml
-   
+
    Name: demo (Applications.Core/containers)
    Connections: (none)
    Resources:
      demo (apps/Deployment)
-   
+
    Name: db (Applications.Datastores/redisCaches)
    Connections: (none)
    Resources:
@@ -190,13 +190,13 @@ Now, let's add a connection between the demo container and the Redis cache. This
 
    ```
    Displaying application: lab-yaml
-   
+
    Name: demo (Applications.Core/containers)
    Connections:
      db (Applications.Datastores/redisCaches) -> demo
    Resources:
      demo (apps/Deployment)
-   
+
    Name: db (Applications.Datastores/redisCaches)
    Connections: (none)
    Resources:

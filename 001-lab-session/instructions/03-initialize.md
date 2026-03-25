@@ -38,7 +38,7 @@ kubectl get pods -n radius-system
 
 You'll see the Radius control-plane pods and some Contour pods running:
 
-```
+```text
 NAME                               READY   STATUS    RESTARTS   AGE
 ucp-5d784f9b5d-rg7qk               1/1     Running   0          54s
 applications-rp-697cdf6b-lp4gk     1/1     Running   0          54s
@@ -173,7 +173,7 @@ actorStateStore  bool      false          -         -
 
 > 💡 Bicep Recipes leverage Bicep module registries, which are a way for Bicep modules to be stored in a container registry via the [Open Container Initiative](https://opencontainers.org/) spec. The Radius team maintains a set of [community Recipes](https://github.com/radius-project/recipes), such as these local-dev Recipes.
 
-Let's take a look at the Bicep template that defines this Recipe. Visit https://github.com/radius-project/recipes/blob/main/local-dev/statestores.bicep to view the source template. You'll see that it's a standard Bicep template with some Kubernetes resources defined to run a lightweight Redis Cache, plus the Dapr component. When a developer asks for a Dapr State Store, this template will be used to deploy it automatically.
+Let's take a look at the Bicep template that defines this Recipe. Visit <https://github.com/radius-project/recipes/blob/main/local-dev/statestores.bicep> to view the source template. You'll see that it's a standard Bicep template with some Kubernetes resources defined to run a lightweight Redis Cache, plus the Dapr component. When a developer asks for a Dapr State Store, this template will be used to deploy it automatically.
 
 ## Next step
 
