@@ -73,8 +73,8 @@ Before you begin, you need:
 ### Step 1: Clone the repository
 
 ```bash
-git clone https://github.com/Reshrahim/customer-agent.git
-cd customer-agent
+git clone https://github.com/radius-project/lab.git
+cd lab/002-customer-support-agent/
 ```
 
 ### Step 2: Set up prerequisites in Azure
@@ -232,49 +232,9 @@ rad bicep publish-extension -f radius/types/agent.yaml --target radius/extension
 rad bicep publish-extension -f radius/types/postgreSqlDatabases.yaml --target radius/extensions/radiusdata.tgz
 rad bicep publish-extension -f radius/types/blobStorages.yaml --target radius/extensions/radiusstorage.tgz
 ```
-
 </details>
 
-### Step 6: Understand the Recipes
-
-> [!IMPORTANT]
->
-> **No action is needed in this step.** The recipes have already been published to `ghcr.io/radius-project/lab/recipes/`.
-
-A Recipe defines *how* to provision a Resource Type. Recipes are Infrastructure as Code templates, Bicep in this sample, that Radius executes when you deploy a resource of a given type. They receive context from Radius (the resource name, properties, connections) and output infrastructure.
-
-This sample has three recipes:
-
-| Recipe                      | Resource Type                     |
-|-----------------------------|-----------------------------------|
-| `recipes/agent.bicep`       | `Radius.AI/agents`                |
-| `recipes/postgres.bicep`    | `Radius.Data/postgreSqlDatabases` |
-| `recipes/blobstorage.bicep` | `Radius.Storage/blobStorages`     |
-
-**Developer never sees these recipes**. They just declare `resource agent 'Radius.AI/agents' = { ... }` in their `app.bicep`, and Radius automatically finds and executes the matching recipe configured by the platform engineer in the environment.
-
-<details>
-<summary>Learn about making changes to recipes (click to expand)</summary>
-
-Bicep templates are published to OCI registries (like container images). If you make changes, republish them to your own registry:
-
-```bash
-rad bicep publish \
-  --file radius/recipes/agent.bicep \
-  --target br:ghcr.io/<org-name>/recipes/agent:1.0
-
-rad bicep publish \
-  --file radius/recipes/postgres.bicep \
-  --target br:ghcr.io/<org-name>/recipes/postgres:1.0
-
-rad bicep publish \
-  --file radius/recipes/blobstorage.bicep \
-  --target br:ghcr.io/<org-name>/recipes/blobstorage:1.0
-```
-
-</details>
-
-### Step 7: Create the Radius Environment
+### Step 6: Create the Radius Environment
 
 A Radius Environment is where you configure *which* recipes to use and *where* Azure resources should be provisioned. Just like Azure, all Radius resources are created in a Radius resource group.
 
@@ -307,6 +267,8 @@ rad deploy radius/env.bicep --group azure `
   --parameters azureResourceGroup=$env:AZURE_RESOURCE_GROUP
 ```
 
+### Step 7: Create a workspace and understand the environment configuration
+
 Create a workspace so the `rad` CLI knows which environment and group to use by default:
 
 **Bash**
@@ -327,13 +289,13 @@ rad workspace create kubernetes azure `
   --group azure
 ```
 
-Confirm the environment was created:
+Confirm the environment was created from the previous step::
 
 ```bash
 rad environment show -o json
 ```
 
-Confirm the recipes were added to the environment:
+Now lets look at the recipes added to the environment. A Recipe defines *how* to provision a Resource Type. Recipes are Infrastructure as Code templates, Bicep in this sample, that Radius executes when you deploy a resource of a given type. They receive context from Radius (the resource name, properties, connections) and output infrastructure.
 
 ```bash
 rad recipe list
@@ -345,6 +307,28 @@ default   Radius.AI/agents                  bicep          ghcr.io/radius-projec
 default   Radius.Data/postgreSqlDatabases   bicep          ghcr.io/radius-project/lab/recipes/postgres:1.0
 default   Radius.Storage/blobStorages       bicep          ghcr.io/radius-project/lab/recipes/blobstorage:1.0
 ```
+
+**Developer never sees these recipes**. They just declare `resource agent 'Radius.AI/agents' = { ... }` in their `app.bicep`, and Radius automatically finds and executes the matching recipe configured by the platform engineer in the environment.
+
+<details>
+<summary>Learn about making changes to recipes (click to expand)</summary>
+
+Bicep templates are published to OCI registries (like container images). If you make changes, republish them to your own registry:
+
+```bash
+rad bicep publish \
+  --file radius/recipes/agent.bicep \
+  --target br:ghcr.io/<org-name>/recipes/agent:1.0
+
+rad bicep publish \
+  --file radius/recipes/postgres.bicep \
+  --target br:ghcr.io/<org-name>/recipes/postgres:1.0
+
+rad bicep publish \
+  --file radius/recipes/blobstorage.bicep \
+  --target br:ghcr.io/<org-name>/recipes/blobstorage:1.0
+```
+</details>
 
 ### Step 8: Create shared resources
 
@@ -541,7 +525,7 @@ The agent will recognize the customer's frustration and call `create_support_tic
     rm .azure-sp.env
     ```
 
-1. Purge your  resources from Azure
+1. Purge your AI resources from Azure
 
     ```bash
     az cognitiveservices account purge \
@@ -554,4 +538,10 @@ The agent will recognize the customer's frustration and call `create_support_tic
 
     ```bash
     rad workspace delete azure --yes
+    ```
+
+1. Delete config from kubectl:
+
+    ```bash
+    kubectl config delete-context $(kubectl config current-context)
     ```
