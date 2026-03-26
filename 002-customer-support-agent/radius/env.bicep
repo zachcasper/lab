@@ -1,11 +1,5 @@
 extension radius
 
-extension radiusAi
-
-extension radiusData
-
-extension radiusStorage
-
 @description('Azure subscription ID for recipe resource provisioning')
 param azureSubscriptionId string
 
