@@ -74,7 +74,7 @@ Before you begin, you need:
 
 ```bash
 git clone https://github.com/radius-project/lab.git
-cd lab/002-customer-support-agent/
+cd lab/001-customer-support-agent/
 ```
 
 ### Step 2: Set up prerequisites in Azure
