@@ -65,7 +65,7 @@ Before you begin, you need:
 > - Git Bash
 > - Azure Cloud Shell
 >
-> PowerShell users can follow along with minor syntax adjustments (examples provided where needed).
+> `jq` is required for parsing JSON output in Bash. Install it depending on the bash environment. PowerShell users can follow along with minor syntax adjustments (examples provided where needed).
 
 ---
 
@@ -91,6 +91,9 @@ Run the setup script to create an Azure resource group, AKS cluster, service pri
 **PowerShell**
 
 ```powershell
+
+(Get-Content .\scripts\setup-azure.sh -Raw) -replace "`r`n","`n" | Set-Content .\scripts\setup-azure.sh -Encoding UTF8
+
 bash ./scripts/setup-azure.sh --location westus3 --resource-group customer-support-agent --cluster-name customer-support-agent-aks
 ```
 
@@ -394,7 +397,7 @@ Get the storage account name (provisioned by the blobstorage recipe):
 
 ```bash
 STORAGE_ACCOUNT=$(az storage account list --resource-group customer-support-agent \
-  --query "[?tags.\"radius-resource-type\"=='Radius.Storage/blobStorages'].name" -o tsv)
+  --query "[].name" -o tsv)
 ```
 
 Upload all PDFs to the `documents` container:
@@ -415,7 +418,7 @@ Get the storage account name (provisioned by the blobstorage recipe):
 ```powershell
 $STORAGE_ACCOUNT = az storage account list `
   --resource-group customer-support-agent `
-  --query "[?tags.`"radius-resource-type`"=='Radius.Storage/blobStorages'].name" `
+  --query "[].name" `
   -o tsv
 ```
 
@@ -536,10 +539,21 @@ The agent will recognize the customer's frustration and call `create_support_tic
 
 1. Purge your AI resources from Azure
 
+    **Bash**
+
     ```bash
     az cognitiveservices account purge \
       --name support-agent-openai \
       --resource-group customer-support-agent \
+      --location westus3
+    ```
+
+    **PowerShell**
+
+    ```powershell
+    az cognitiveservices account purge `
+      --name support-agent-openai `
+      --resource-group customer-support-agent `
       --location westus3
     ```
 
